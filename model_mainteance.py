@@ -14,12 +14,10 @@ class MonitoringandRetraining():
     def __init__(self):
         self.train_start_date = pd.to_datetime('2017-01-01').date()
         self.train_end_date= pd.to_datetime('2018-01-01').date()
-        self.train_start_date = None
         self.data = None
-        self.train_end_date = None
         self.reference_data = None
         self.preprocessed_data = None
-        self.drif_metrics = None
+        self.drift_metrics = None
     
     def load_data(self):
         project_path = os.getcwd()
@@ -40,25 +38,31 @@ class MonitoringandRetraining():
         self.end_date = pd.to_datetime('2018-01-01').date()
 # filter the dataframe by date range
         self.reference_data = order_customer_paiement_review.loc[(order_customer_paiement_review['InvoiceDate'] > self.train_start_date) & (order_customer_paiement_review['InvoiceDate'] < self.train_start_dateend_date)]
-        
-    def calculate_drift_metrics(self):
-        mlflow.tracking.set_tracking_uri("http://localhost:5000")
-        data_columns = ColumnMapping()
-        client = MlflowClient()
-        mlflow.set_experiment('Data Drift Evaluation with Evidently')
-        for date in :
-            with mlflow.start_run() as run: #inside brackets run_name='test'
-                mlflow.log_param("begin", self.curent_date)
-                mlflow.log_param("end", date[1])
+    
+    def get_weeks(self):
 
-        # Log metrics
-        metrics = eval_drift(raw_data.loc[reference_dates[0]:reference_dates[1]], 
-                             raw_data.loc[date[0]:date[1]], 
-                             column_mapping=data_columns)
-        for feature in metrics:
-            mlflow.log_metric(feature[0], round(feature[1], 3))
-            
     def get_drift_metrics(self):
+        DataDriftPreset(stattest='PSI', sttatest_threshold=0.2)
+        data_drift_dataset_report = Report(DataDriftPreset())
+        data_drift_report.run(current_data = self.reference_data, )
+        data_drift_dataset_report.json()
+        self.drift_metrics = data_drift_dataset_report.as_dict()
+    
+    def train(self):
+        from sklearn.cluster import KMeans
+        kmeans = KMeans(n_clusters=k).fit(new_data
+        mlflow.sklearn.log_model(
+        sk_model=sk_learn_rfr,
+        artifact_path="sklearn-model",
+        registered_model_name="k_means"
+        if 
+        latest_versions = client.get_latest_versions(name=model_name)
+        version_models = []
+        for version in latest_versions:
+            version_models.append(version.version)
+        new_model
+
+
         
         
         

@@ -5,19 +5,20 @@ import datetime as dt
 import seaborn as sns
 import matplotlib.pyplot as plt
 import mlflow
-import evidently
+import timedelta
 from evidently.pipeline.column_mapping import ColumnMapping
 from evidently.report import Report
 from evidently.metric_preset import DataDriftPreset
 
 class MonitoringandRetraining():
-    def __init__(self):
+    def __init__(self, execution_date):
         self.train_start_date = pd.to_datetime('2017-01-01').date()
         self.train_end_date= pd.to_datetime('2018-01-01').date()
         self.data = None
         self.reference_data = None
         self.preprocessed_data = None
         self.drift_metrics = None
+        self.execution_date = execution_date
     
     def load_data(self):
         project_path = os.getcwd()
@@ -37,16 +38,22 @@ class MonitoringandRetraining():
         start_date = pd.to_datetime('2017-01-01').date()
         self.end_date = pd.to_datetime('2018-01-01').date()
 # filter the dataframe by date range
-        self.reference_data = order_customer_paiement_review.loc[(order_customer_paiement_review['InvoiceDate'] > self.train_start_date) & (order_customer_paiement_review['InvoiceDate'] < self.train_start_dateend_date)]
+        self.reference_data = order_customer_paiement_review.loc[(order_customer_paiement_review['InvoiceDate'] > self.train_start_date) & (order_customer_paiement_review['InvoiceDate'] < self.train_start_date)]
+        self.current_data = 
     
-    def get_weeks(self):
+    def get_weeks():
+
+
 
     def get_drift_metrics(self):
         DataDriftPreset(stattest='PSI', sttatest_threshold=0.2)
         data_drift_dataset_report = Report(DataDriftPreset())
-        data_drift_report.run(current_data = self.reference_data, )
+        data_drift_report.run(reference_data = self.reference_data, current_data =  )
         data_drift_dataset_report.json()
         self.drift_metrics = data_drift_dataset_report.as_dict()
+        
+    def check_drift_metrics(self):
+
     
     def train(self):
         from sklearn.cluster import KMeans
@@ -54,17 +61,23 @@ class MonitoringandRetraining():
         mlflow.sklearn.log_model(
         sk_model=sk_learn_rfr,
         artifact_path="sklearn-model",
-        registered_model_name="k_means"
+        registered_model_name="k_means")
         if 
         latest_versions = client.get_latest_versions(name=model_name)
         version_models = []
         for version in latest_versions:
             version_models.append(version.version)
         new_model
+        self.train_end_date = #timedelta thing
 
 
-        
-        
+
+
+if  __name__ = "__main__":
+ClusteringModel = MonitoringandRetraining()
+
+
+
         
         
 

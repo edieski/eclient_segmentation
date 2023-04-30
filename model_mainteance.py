@@ -59,7 +59,7 @@ class MonitoringandRetraining():
              mlflow.log_param("execution_date", str(self.execution_date))
              mlflow.log_param("train_end_date", str(self.train_end_date))
              
-    def set_reference_data_and_retrain(self):
+    def set_new_reference_data_and_retrain(self):
     if self.silhouette_score < 0.33:
         self.train_end_date = self.execution_date
         new_reference_data = self.data.loc[self.data['InvoiceDate'] < self.train_end_date]
